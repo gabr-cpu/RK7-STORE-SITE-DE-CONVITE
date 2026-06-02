@@ -15,26 +15,31 @@ const imagens = [
 ];
 
 const slider = document.getElementById("slider");
+const finalSection = document.querySelector(".final");
 
 let atual = 0;
 
 slider.src = imagens[0];
 
+if(finalSection){
+    finalSection.style.display = "none";
+}
+
 const intervalo = setInterval(() => {
 
     atual++;
 
-    if (atual >= imagens.length) {
+    if(atual >= imagens.length){
 
         clearInterval(intervalo);
 
-        const final = document.querySelector(".final");
+        if(finalSection){
+            finalSection.style.display = "block";
 
-        final.style.display = "block";
-
-        final.scrollIntoView({
-            behavior: "smooth"
-        });
+            finalSection.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
 
         return;
     }
@@ -46,6 +51,6 @@ const intervalo = setInterval(() => {
         slider.src = imagens[atual];
         slider.style.opacity = "1";
 
-    }, 500);
+    }, 400);
 
 }, 2000);
