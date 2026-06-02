@@ -20,21 +20,32 @@ let atual = 0;
 
 slider.src = imagens[0];
 
-setInterval(() => {
+const intervalo = setInterval(() => {
 
-atual++;
+    atual++;
 
-if(atual >= imagens.length){
-atual = 0;
-}
+    if (atual >= imagens.length) {
 
-slider.style.opacity = "0";
+        clearInterval(intervalo);
 
-setTimeout(() => {
+        const final = document.querySelector(".final");
 
-slider.src = imagens[atual];
-slider.style.opacity = "1";
+        final.style.display = "block";
 
-},300);
+        final.scrollIntoView({
+            behavior: "smooth"
+        });
 
-},1000);
+        return;
+    }
+
+    slider.style.opacity = "0";
+
+    setTimeout(() => {
+
+        slider.src = imagens[atual];
+        slider.style.opacity = "1";
+
+    }, 500);
+
+}, 2000);
